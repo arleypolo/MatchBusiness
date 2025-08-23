@@ -11,7 +11,7 @@ app.use(json());
 app.use('/prueba', pruebaRoutes);
 app.use('/coders', codersRoutes);
 
-// endpoints for companies
-app.use('/companies', companiesRoutes )
+
+app.use('/companies', companiesRoutes ); // endpoints for companies
 
 export default app;

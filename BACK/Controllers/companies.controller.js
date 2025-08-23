@@ -1,4 +1,4 @@
-import {getCompaniesModel} from "../Models/companies.models.js";
+import {getCompaniesModel, getCompanyByIdModel} from "../Models/companies.models.js";
 
 /*
 *
@@ -19,7 +19,22 @@ const getAllCompanies = async (request, response) => {
     }
 }
 
+const getCompanyById = async (request, response) => {
+    try{
+        const {id} = request.params;
+        const company = await getCompanyByIdModel(id);
+        if (company.length === 0) {
+            response.status(200).json({message: 'No company found'});
+        }else{
+            response.status(200).json(company);
+        }
+    }catch(error){
+        response.status(500).json({error: error.message});
+    }
+}
+
 
 export{
     getAllCompanies,
+    getCompanyById,
 }
