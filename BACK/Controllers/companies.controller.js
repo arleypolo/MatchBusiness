@@ -24,7 +24,7 @@ const getCompanyById = async (request, response) => {
         const {id} = request.params;
         const company = await getCompanyByIdModel(id);
         if (company.length === 0) {
-            response.status(200).json({message: 'No company found'});
+          response.status(404).json({error: 'Company not found'})
         }else{
             response.status(200).json(company);
         }
