@@ -1,4 +1,4 @@
-import db from '../Routes/db.js'
+import db from '../config/db.js'
 
 const getCompaniesModel = async () => {
     try{
