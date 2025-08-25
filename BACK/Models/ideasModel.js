@@ -5,3 +5,22 @@ export const sendIdea = async ({ id_coder, id_company, title, description }) => 
     VALUES ($1, $2, $3, $4)`
     await db.query(queryIdea, [id_coder, id_company, title, description]);
 };
+
+export const getIdea = async () => {
+    try{
+        const data = await db.query('SELECT * FROM ideas');
+        return data.rows; // return rows
+
+    }catch(error){ // handle error
+        throw 'Error getting companies: ' + error;
+    }
+}
+
+export const getIdeaByIdModel = async (id) => {
+    try{
+        const data = await db.query('SELECT * FROM ideas WHERE id_idea = $1', [id]);
+        return data.rows;
+    }catch (error){
+        throw 'Error getting idea by id: ' + error + ' id: ' + id ;
+    }
+}
