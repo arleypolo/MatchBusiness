@@ -1,4 +1,4 @@
-import { getCompaniesModel, getCompanyByIdModel, postCompaniesModel } from "../Models/companies.models.js";
+import { getCompaniesModel, getCompanyByIdModel, postCompaniesModel, putCompaniesModel } from "../Models/companies.models.js";
 
 /*
 *
@@ -54,9 +54,21 @@ const createCompany = async (req, res) => {
     }
 };
 
+const updateCompany = async (req, res) => {
+    try {
+        const company = await putCompaniesModel(req.params.id, req.body);
+        if (!company) return res.status(404).json({ error: 'Company not found' });
+        res.json(company);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
 
 export {
     getAllCompanies,
     getCompanyById,
     createCompany,
+    updateCompany,
 }
