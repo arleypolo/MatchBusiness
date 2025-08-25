@@ -19,3 +19,12 @@ export const sendIdea = async (req, res) =>  {
     }
 };
 
+export const getIdea = async (req, res) => {
+    try {
+        const coders = await ideasModel.getIdea();
+        res.json(coders);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
