@@ -15,3 +15,12 @@ export const getIdea = async () => {
         throw 'Error getting companies: ' + error;
     }
 }
+
+export const getIdeaByIdModel = async (id) => {
+    try{
+        const data = await db.query('SELECT * FROM ideas WHERE id_idea = $1', [id]);
+        return data.rows;
+    }catch (error){
+        throw 'Error getting idea by id: ' + error + ' id: ' + id ;
+    }
+}
