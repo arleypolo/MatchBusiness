@@ -8,7 +8,6 @@ app.use(cors());
 app.use(json());
 
 app.use('/coders', codersRoutes);
-
-app.use('/auth/login',authLoginRouter);
+app.use('/auth',authLoginRouter);
 
 export default app;
