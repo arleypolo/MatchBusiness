@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar Nueva Propuesta</title>
+    <link rel="stylesheet" href="../resource/styles/postIdea.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button id="openModalBtn">Agregar Nueva Propuesta</button>
+    <div class="modal-bg" id="modalBg" style="display: none">
+      <div class="modal-container">
+        <button class="modal-close" id="closeModalBtn">&times;</button>
+        <h2 class="modal-title">
+          <span class="plus">+</span> Agregar Nueva Propuesta
+        </h2>
+        <div class="modal-info">
+          <div class="modal-info-icon">&#128161;</div>
+          <div>
+            <strong>Nueva Propuesta</strong>
+            <p>
+              Envía tu propuesta innovadora a las empresas aliadas. Asegúrate de
+              ser específico sobre tu enfoque, metodología y el valor que puedes
+              aportar.
+            </p>
+          </div>
+        </div>
+        <form class="modal-form">
+          <label for="empresa">Seleccionar Empresa *</label>
+          <select class="select-empresa">
+            <option value="Siste">Sistecrédito</option>
+            <option value="Smart">SmartFit</option>
+            <option value="Postobon">Postobon</option>
+            <option value="Nequi">Nequi</option>
+            <option value="BlackBird">BlackBird</option>
+            <option value="Auteco">Auteco</option>
+          </select>
+          <label for="titulo">Título de tu Propuesta *</label>
+          <input
+            type="text"
+            id="titulo"
+            name="titulo"
+            placeholder="Título:"
+            required
+          />
+          <label for="descripcion">Descripción de tu Propuesta *</label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            rows="7"
+            maxlength="2000"
+            placeholder="Describe detalladamente:&#10;• Tu enfoque para solucionar el desafío&#10;• Metodología y tecnologías que utilizarías&#10;• Timeline paso a paso&#10;• Experiencia relevante que tienes&#10;• Valor diferencial que aportas&#10;• Por qué eres la persona indicada para este proyecto"
+            required
+          ></textarea>
+          <div class="modal-form-footer">
+            <button type="button" class="btn-cancelar" id="cancelModalBtn">
+              &#10005; Cancelar
+            </button>
+            <button type="submit" class="btn-enviar">
+              <span>&#9992;</span> Enviar Propuesta
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="../controllers/postIdea.js"></script>
+</html>
