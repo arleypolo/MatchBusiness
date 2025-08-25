@@ -42,8 +42,18 @@ const postCompaniesModel = async ({ id, company_name, sector, description, passw
 };
 
 
+const putCompaniesModel = async (id, { company_name, sector, description }) => {
+    const query = `UPDATE companies 
+                SET company_name = $1, sector = $2, description = $3
+                WHERE id_company = $4 RETURNING *`;
+    const result = await db.query(query, [company_name, sector, description, id]);
+    return result.rows[0];
+};
+
+
 export{
     getCompaniesModel,
     getCompanyByIdModel,
     postCompaniesModel,
+    putCompaniesModel,
 }
