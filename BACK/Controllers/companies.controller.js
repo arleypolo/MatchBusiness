@@ -15,7 +15,7 @@ const getAllCompanies = async (request, response) => {
             response.status(200).json(companies);
         }
     } catch (error) {
-        response.status(500).json({error: error.message});
+        response.status(500).json({error: 'server Error'});
     }
 }
 
@@ -29,7 +29,7 @@ const getCompanyById = async (request, response) => {
             response.status(200).json(company);
         }
     }catch(error){
-        response.status(500).json({error: error.message});
+        response.status(500).json({error: 'server Error'});
     }
 }
 
