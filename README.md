@@ -82,3 +82,4 @@ flowchart TD
     F --> G[Test y validaciones]
     G --> H[Si está estable -> Merge a main]
 ```
+
