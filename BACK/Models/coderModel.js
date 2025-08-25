@@ -40,7 +40,23 @@ export const updateCoder = async (id, { first_name, last_name, phone, cohort, de
 };
 
 export const deleteCoder = async (id) => {
-    const query = `DELETE FROM coders WHERE id_coder = $1 RETURNING *`;
-    const result = await db.query(query, [id]);
-    return result.rows[0];
+    const client = await db.connect();
+    try {
+        await client.query('BEGIN');
+
+        const queryCoder = `DELETE FROM coders WHERE id_coder = $1 RETURNING *`;
+        await client.query(queryCoder, [id]);
+
+        const queryUser = `DELETE FROM users WHERE id_user = $1 RETURNING *`;
+        await client.query(queryUser, [id]);
+
+        await client.query('COMMIT');
+        return true;
+    } catch (error) {
+        await client.query('ROLLBACK');
+        throw error;
+    }
+    finally {
+        client.release();
+    }
 };
