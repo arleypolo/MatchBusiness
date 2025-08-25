@@ -9,9 +9,9 @@ app.use(cors());
 app.use(json());
 
 app.use('/coders', codersRoutes);
-app.use('/ideas', ideasRoutes);
-
 
 app.use('/companies', companiesRoutes ); // endpoints for companies
+app.use('/ideas', ideasRoutes);
+app.use('/companies', companiesRoutes );
 
 export default app;

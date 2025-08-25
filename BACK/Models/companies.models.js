@@ -19,7 +19,31 @@ const getCompanyByIdModel = async (id) => {
     }
 }
 
+const postCompaniesModel = async ({ id, company_name, sector, description, password}) => {
+    const company = await db.connect();
+    try {
+        await company.query('BEGIN')
+
+        const queryUsers = `INSERT INTO users (id_user, password, id_role, is_active) VALUES ($1, $2, $3, $4) RETURNING *`;
+        await company.query(queryUsers, [id, password, 2, true]);
+
+        const queryCompanies = `INSERT INTO companies (id_company, company_name, sector, description) VALUES ($1, $2, $3, $4) RETURNING *`;
+        const companyResult = await company.query(queryCompanies, [id, company_name, sector, description]);
+
+
+        await company.query('COMMIT');
+        return companyResult.rows[0];
+    } catch (error) {
+        await company.query('ROLLBACK');
+        throw error;
+    } finally {
+        company.release();
+    }
+};
+
+
 export{
     getCompaniesModel,
     getCompanyByIdModel,
+    postCompaniesModel,
 }
