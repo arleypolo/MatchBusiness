@@ -15,8 +15,8 @@ export const createCoder = async ({ id, first_name, last_name, phone, cohort, de
     try {
         await client.query('BEGIN');
 
-        const queryUsers = `INSERT INTO users (id_user, password, id_role, is_active) VALUES ($1, $2, $3, $4) RETURNING *`;
-        await client.query(queryUsers, [id, password, 1, true]);
+        const queryUsers = `INSERT INTO users (id_user, password, id_role) VALUES ($1, $2, $3) RETURNING *`;
+        await client.query(queryUsers, [id, password, 1]);
 
         const queryCoders = `INSERT INTO coders (id_coder, first_name, last_name, phone, cohort, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
         const coderResult = await client.query(queryCoders, [id, first_name, last_name, phone, cohort, description]);

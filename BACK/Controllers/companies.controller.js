@@ -1,4 +1,4 @@
-import { getCompaniesModel, getCompanyByIdModel, postCompaniesModel, putCompaniesModel } from "../Models/companies.models.js";
+import { getCompaniesModel, getCompanyByIdModel, postCompaniesModel, putCompaniesModel, deleteCompaniesModel } from "../Models/companies.models.js";
 
 /*
 *
@@ -64,6 +64,16 @@ const updateCompany = async (req, res) => {
     }
 };
 
+const deleteCompany = async (req, res) => {
+    try {
+        const company = await deleteCompaniesModel(req.params.id);
+        if (!company) return res.status(404).json({ error: 'Company not found' });
+        res.json({ message: 'Company deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
 
 
 export {
@@ -71,4 +81,5 @@ export {
     getCompanyById,
     createCompany,
     updateCompany,
+    deleteCompany,
 }
