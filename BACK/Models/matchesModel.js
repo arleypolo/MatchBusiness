@@ -30,8 +30,9 @@ export const postMatchesModel = async ({ id_idea }) => {
 export const putMatchesModel = async (id, { match_status }) => {
     const query = `UPDATE matches 
                 SET match_status = $1
-                WHERE id_idea = $2 RETURNING *`;
-    await db.query(query, [ match_status, id]);
+                WHERE id_match = $2 RETURNING *`;
+    const result = await db.query(query, [ match_status, id]);
+    return result.rows[0];
 };
 
 export const deleteMacthesModel = async (id) => {

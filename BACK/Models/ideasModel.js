@@ -40,6 +40,6 @@ export const putIdeasModel = async (id, { title, description }) => {
 
 export const deleteIdeasModel = async (id) => {
     const queryIdea = `DELETE FROM ideas WHERE id_idea = $1 RETURNING *`;
-    const result = db.query(queryIdea, [id]);
+    const result = await db.query(queryIdea, [id]);
     return result.rows[0];
 };
