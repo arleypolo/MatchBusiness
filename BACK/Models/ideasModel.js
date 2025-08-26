@@ -42,3 +42,11 @@ export const postIdeaModel = async ({ id_coder, id_company, title, description})
         company.release();
     }
 };
+
+export const putIdeasModel = async (id, { title, description }) => {
+    const query = `UPDATE ideas 
+                SET title = $1, description = $2
+                WHERE id_idea = $3 RETURNING *`;
+    const result = await db.query(query, [ title, description, id]);
+    return result.rows[0];
+};
