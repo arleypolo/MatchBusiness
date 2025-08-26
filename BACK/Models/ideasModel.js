@@ -25,23 +25,14 @@ export const getIdeaByIdModel = async (id) => {
     }
 }
 
-export const postIdeaModel = async ({ id_coder, id_company, title, description}) => {
-    const company = await db.connect();
-    try {
-        await company.query('BEGIN')
-
-        const queryIdeas = `INSERT INTO ideas (id_coder, id_company, title, description) VALUES ($1, $2, $3, $4) RETURNING *`;
-        await company.query(queryUsers, [id_coder, id_company, title, description ]);
-
-        await company.query('COMMIT');
-        return companyResult.rows[0];
-    } catch (error) {
-        await company.query('ROLLBACK');
-        throw error;
-    } finally {
-        company.release();
-    }
+export const postIdeaModel = async ({ id_coder, id_company, title, description }) => {
+    const query = `INSERT INTO ideas (id_coder, id_company, title, description) 
+                   VALUES ($1, $2, $3, $4) RETURNING *`;
+    
+    const result = await db.query(query, [id_coder, id_company, title, description]);
+    return result.rows[0]; 
 };
+
 
 export const putIdeasModel = async (id, { title, description }) => {
     const query = `UPDATE ideas 
