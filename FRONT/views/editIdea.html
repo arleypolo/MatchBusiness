@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Idea</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <i class="fa-regular fa-pen-to-square"></i>
+    <h2 id="proposal">Editar Propuesta - </h2>
+    <div id="challenge-info">
+        <b>Información del Desafió</b>
+        <p id="company">Empresa: </p>
+    </div>
+    <div id="warning">
+        <h4 class="warning">Importante</h2>
+        <p class="warning">Solo puedes editar propuestas que están en estado "Pendiente" o "En revisión".
+            Una vez edites tu propuesta, la empresa será notificada del cambio
+        </p>
+    </div>
+    <h3>Título de tu Propuesta *</h3>
+    <input type="text" id="inp-title">
+    <h3>Descripción de tu propuesta *</h3>
+    <textarea name="description" id="txt-description">
+
+    </textarea>
+    <button id="btn-cancel"><i class="fa-solid fa-xmark"></i>Cancelar</button>
+    <button id="btn-save"><i class="fa-solid fa-floppy-disk"></i>Guardar</button>
+</body>
+
+</html>
