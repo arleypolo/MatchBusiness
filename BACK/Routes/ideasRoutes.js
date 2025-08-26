@@ -6,5 +6,6 @@ const router = Router();
 router.post('/', ideasController.sendIdea);
 router.get('/', ideasController.getIdea);
 router.get('/:id',ideasController.getIdeaById );
+router.post('/', ideasController.createIdea);
 
 export default router;
