@@ -50,3 +50,23 @@ export const putIdeasModel = async (id, { title, description }) => {
     const result = await db.query(query, [ title, description, id]);
     return result.rows[0];
 };
+
+export const deleteIdeasModel = async (id) => {
+    const client = await db.connect();
+    try {
+        await client.query('BEGIN');
+
+        const queryIdea = `DELETE FROM ideas WHERE id_idea = $1 RETURNING *`;
+        await client.query(queryIdea, [id]);
+
+        await client.query('COMMIT');
+        return true;
+    } catch (error) {
+        console.error(error)
+        await client.query('ROLLBACK');
+        throw error;
+    }
+    finally {
+        client.release();
+    }
+};
