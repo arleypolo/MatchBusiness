@@ -19,3 +19,28 @@ export const sendIdea = async (req, res) =>  {
     }
 };
 
+export const getIdea = async (req, res) => {
+    try {
+        const coders = await ideasModel.getIdea();
+        res.json(coders);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+export const getIdeaById = async (request, response) => {
+    try {
+        const { id } = request.params;
+        const idea = await ideasModel.getIdeaByIdModel(id);
+        if (idea.length === 0) {
+            response.status(404).json({ error: 'Idea not found' })
+        } else {
+            response.status(200).json(idea);
+        }
+    } catch (error) {
+        console.error(error)
+        response.status(500).json({ error: 'server Error' });
+
+    }
+}
+
