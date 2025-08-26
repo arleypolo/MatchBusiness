@@ -59,8 +59,6 @@ export const updateMatch = async (req, res) => {
 export const deleteMatch = async (req, res) => {
     try {
         const match = await matchesModel.deleteMacthesModel(req.params.id);
-        console.log(match)
-        console.log(!!match)
         if (!match) return res.status(404).json({ error: 'Match not found' });
         res.json({ message: 'Match deleted successfully' });
     } catch (error) {
