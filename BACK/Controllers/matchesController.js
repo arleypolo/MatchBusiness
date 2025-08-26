@@ -23,16 +23,12 @@ export const getMatches = async (req, res) => {
 
 export const createMatch = async (req, res) => {
     try {
-        const { id_idea, match_date } = req.body;
+        const { id_idea } = req.body;
 
         if (!id_idea) {
             return res.status(400).json({ error: 'The match must be associated with an idea' });
         }
-        if (!match_date) {
-            return res.status(400).json({ error: 'Match date must not be null' });
-        }
-
-        const newMatch = await matchesModel.postMatchesModel({ id_idea, match_date });
+        const newMatch = await matchesModel.postMatchesModel({ id_idea });
 
         res.status(201).json({
             message: "Match created successfully",
@@ -45,5 +41,29 @@ export const createMatch = async (req, res) => {
         }
         console.error("Error creating match:", error);
         res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+export const updateMatch = async (req, res) => {
+    try {
+        const match = await matchesModel.putMatchesModel(req.params.id, req.body);
+        if (!match) return res.status(404).json({ error: 'Match not found' });
+        res.json(match);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+export const deleteMatch = async (req, res) => {
+    try {
+        const match = await matchesModel.deleteMacthesModel(req.params.id);
+        console.log(match)
+        console.log(!!match)
+        if (!match) return res.status(404).json({ error: 'Match not found' });
+        res.json({ message: 'Match deleted successfully' });
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
