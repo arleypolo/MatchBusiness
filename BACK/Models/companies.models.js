@@ -24,8 +24,8 @@ const postCompaniesModel = async ({ id, company_name, sector, description, passw
     try {
         await company.query('BEGIN')
 
-        const queryUsers = `INSERT INTO users (id_user, password, id_role, is_active) VALUES ($1, $2, $3, $4) RETURNING *`;
-        await company.query(queryUsers, [id, password, 2, true]);
+        const queryUsers = `INSERT INTO users (id_user, password, id_role) VALUES ($1, $2, $3) RETURNING *`;
+        await company.query(queryUsers, [id, password, 2]);
 
         const queryCompanies = `INSERT INTO companies (id_company, company_name, sector, description) VALUES ($1, $2, $3, $4) RETURNING *`;
         const companyResult = await company.query(queryCompanies, [id, company_name, sector, description]);
@@ -50,10 +50,32 @@ const putCompaniesModel = async (id, { company_name, sector, description }) => {
     return result.rows[0];
 };
 
+const deleteCompaniesModel = async (id) => {
+    const client = await db.connect();
+    try {
+        await client.query('BEGIN');
+
+        const queryUser = `DELETE FROM users WHERE id_user = $1 RETURNING *`;
+        await client.query(queryUser, [id]);
+
+        await client.query('COMMIT');
+        return true;
+    } catch (error) {
+        console.error(error)
+        await client.query('ROLLBACK');
+        throw error;
+    }
+    finally {
+        client.release();
+    }
+};
+
+
 
 export{
     getCompaniesModel,
     getCompanyByIdModel,
     postCompaniesModel,
     putCompaniesModel,
+    deleteCompaniesModel,
 }
