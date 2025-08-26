@@ -31,7 +31,7 @@ export const postIdeaModel = async ({ id_coder, id_company, title, description})
         await company.query('BEGIN')
 
         const queryIdeas = `INSERT INTO ideas (id_coder, id_company, title, description) VALUES ($1, $2, $3, $4) RETURNING *`;
-        await company.query(queryUsers, [id_coder, id_company, title, description ]);
+        await company.query(queryIdeas, [id_coder, id_company, title, description ]);
 
         await company.query('COMMIT');
         return companyResult.rows[0];
