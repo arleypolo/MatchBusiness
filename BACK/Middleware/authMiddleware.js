@@ -1,3 +1,13 @@
+// Permite acceso a ambos roles: coder o company
+export const authorizeCompanyOrCoder = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).json({ message: "Usuario no autenticado" });
+    }
+    if (req.user.role !== "coder" && req.user.role !== "company") {
+        return res.status(403).json({ message: "Acceso solo para CODERS o COMPANIES" });
+    }
+    next();
+};
 import jwt from "jsonwebtoken";
 
 const secretKey = process.env.JWT_SECRET;
