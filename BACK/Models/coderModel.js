@@ -40,7 +40,7 @@ export const updateCoder = async (id, { first_name, last_name, phone, cohort, de
 };
 
 export const deleteCoder = async (id) => {
-    const queryCoder = `DELETE FROM coders WHERE id_coder = $1 RETURNING *`;
+    const queryCoder = `DELETE FROM users WHERE id_user = $1 RETURNING *`;
     const result = await db.query(queryCoder,[id]);
     return result.rows[0];
 };

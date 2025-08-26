@@ -35,15 +35,14 @@ const getCompanyById = async (request, response) => {
 
 const createCompany = async (req, res) => {
     try {
-        const {id, company_name, sector, description, password} = req.body;
-        if (!id || !company_name || !sector || !description || !password){
+        const { id, company_name, sector, description, password } = req.body;
+        if (!id || !company_name || !sector || !description || !password) {
             // Empty inputs error
-            return res.status(400).json({error:'All inputs must be have a valid value'})
+            return res.status(400).json({ error: 'All inputs must be have a valid value' })
         }
         const company = await postCompaniesModel(req.body);
-        res.status(201).json(company);
+        res.status(201).json({ message: `Company with NIT ${company.id_company} was created succesfully` });
     } catch (error) {
-        console.error('Error detallado: ', error);
         if (error.code === '23505') {
             // Duplicated password error
             return res.status(400).json({
@@ -56,9 +55,14 @@ const createCompany = async (req, res) => {
 
 const updateCompany = async (req, res) => {
     try {
+        const { company_name, sector, description } = req.body;
+
+        if (!company_name || !sector || !description) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
         const company = await putCompaniesModel(req.params.id, req.body);
         if (!company) return res.status(404).json({ error: 'Company not found' });
-        res.json(company);
+        res.json({message: `Company ${company.company_name} was updated succesfully`});
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
@@ -73,8 +77,6 @@ const deleteCompany = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
-
 
 export {
     getAllCompanies,
