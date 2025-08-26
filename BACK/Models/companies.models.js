@@ -51,26 +51,10 @@ const putCompaniesModel = async (id, { company_name, sector, description }) => {
 };
 
 const deleteCompaniesModel = async (id) => {
-    const client = await db.connect();
-    try {
-        await client.query('BEGIN');
-
-        const queryUser = `DELETE FROM users WHERE id_user = $1 RETURNING *`;
-        await client.query(queryUser, [id]);
-
-        await client.query('COMMIT');
-        return true;
-    } catch (error) {
-        console.error(error)
-        await client.query('ROLLBACK');
-        throw error;
-    }
-    finally {
-        client.release();
-    }
+    const queryDeleteCompany = `DELETE FROM users WHERE id_user = $1 RETURNING *`;
+    const result = await db.query(queryDeleteCompany,[id])
+    return result.rows[0];
 };
-
-
 
 export{
     getCompaniesModel,
