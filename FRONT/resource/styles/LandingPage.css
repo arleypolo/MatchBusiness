@@ -1,0 +1,377 @@
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f6fcf9;
+  color: #222;
+}
+
+header {
+  background: #f6fcf9;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
+  padding: 0;
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 24px 0 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  width: 48px;
+  height: 48px;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.nav-links a {
+  font-size: 1.1rem;
+  color: #222;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 24px;
+  border-radius: 8px;
+  background: #eaf7f0;
+  transition: background 0.2s;
+}
+
+.nav-links a:hover {
+  background: #d2f5e3;
+}
+
+main {
+  width: 100%;
+  margin: 0 auto;
+  background: #f6fcf9;
+}
+
+.home1 {
+  text-align: center;
+  padding: 56px 0 32px 0;
+  background: #f6fcf9;
+}
+
+.home1 > p:first-child {
+  color: #7ecb9c;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.home1 h1 {
+  font-size: 2.7rem;
+  font-weight: 800;
+  color: #222;
+  margin: 0 0 18px 0;
+  letter-spacing: -1px;
+}
+
+.home1 h1 span {
+  color: #7ecb9c;
+}
+
+.home1 > p:nth-of-type(2) {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.match {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+.match-companie, .match-coder {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(126,203,156,0.08);
+  padding: 32px 28px;
+  width: 260px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.match-companie img, .match-coder img {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 8px;
+}
+
+.match-companie p:first-of-type, .match-coder p:first-of-type {
+  font-weight: 700;
+  color: #222;
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.match-companie p:last-of-type, .match-coder p:last-of-type {
+  color: #555;
+  font-size: 1rem;
+}
+
+.match > img {
+  width: 80px;
+  height: 80px;
+}
+
+.home2 {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  background: #fff;
+  padding: 40px 0 32px 0;
+  margin: 2rem auto;
+  border-radius: 0 0 32px 32px;
+  box-shadow: 0 4px 24px 0 rgba(126,203,156,0.08);
+  max-width: 900px;
+  position: relative;
+  top: -32px;
+  z-index: 2;
+}
+
+.statis {
+  text-align: center;
+}
+
+.statis h1 {
+  color: #7ecb9c;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.statis p {
+  color: #222;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.home3 {
+  background: #fff;
+  margin: 0 auto;
+  padding: 64px 0 32px 0;
+  text-align: center;
+  border-radius: 32px;
+  max-width: 1100px;
+  box-shadow: 0 4px 24px 0 rgba(126,203,156,0.08);
+  position: relative;
+  top: -24px;
+  z-index: 1;
+}
+
+.home3 h1 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.home3 > p {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.cardIdea {
+  display: inline-block;
+  background: #f6fcf9;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px 0 rgba(126,203,156,0.06);
+  padding: 32px 28px;
+  width: 260px;
+  margin: 0 18px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.cardIdea img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+}
+
+.cardIdea p:first-of-type {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #7ecb9c;
+  margin-bottom: 4px;
+}
+
+.cardIdea h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #222;
+  margin: 0 0 8px 0;
+}
+
+.cardIdea p:last-of-type {
+  color: #555;
+  font-size: 1rem;
+}
+
+.home4 {
+  background: #f6fcf9;
+  padding: 64px 0 32px 0;
+  text-align: center;
+}
+
+.home4 h1 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.home4 > p {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.partner-logos {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.partner-logo {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px 0 rgba(126,203,156,0.06);
+  padding: 16px 18px;
+  width: 120px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.partner-logo img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.partner-logo p {
+  font-size: 1rem;
+  color: #222;
+  font-weight: 600;
+  margin: 0;
+}
+
+.home4 > div:last-child {
+  margin-top: 40px;
+}
+
+.home4 > div:last-child h1 {
+  color: #222;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.home4 > div:last-child p {
+  color: #7ecb9c;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+footer {
+  background: #222;
+  color: #fff;
+  padding: 48px 0 24px 0;
+  text-align: center;
+  margin-top: 48px;
+}
+
+footer > div > div:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+footer img {
+  width: 32px;
+  height: 32px;
+  margin: 0 4px;
+}
+
+footer p {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+footer hr {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 24px 0;
+}
+
+@media (max-width: 900px) {
+  .match, .home2, .partner-logos {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+  .home2, .home3, .home4 {
+    max-width: 98vw;
+    border-radius: 0;
+  }
+  nav {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .match-companie, .match-coder, .cardIdea, .partner-logo {
+    width: 90vw;
+    min-width: 0;
+    padding: 18px 8px;
+  }
+  .home1 h1, .home3 h1, .home4 h1 {
+    font-size: 1.3rem;
+  }
+  .home2 {
+    gap: 12px;
+    padding: 18px 0;
+  }
+  .home3, .home4 {
+    padding: 24px 0 12px 0;
+  }
+}
