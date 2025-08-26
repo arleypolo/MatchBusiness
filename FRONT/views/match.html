@@ -1,18 +1,51 @@
-<div>
-    <div>
-        <h1>See the Ideas and Match</h1>
-    </div>
-    <div>
-        <button class="match-button">Matches</button>
-        <button class="idea-button">Ideas</button>
-    </div>
+<div class="w-full bg-gray-50 min-h-screen">
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4">
+            <div class="flex items-center gap-3">
+                <img src="../resource/images/logo.png" alt="logo" class="w-10 h-10">
+                <a href="./LandingPage.html" class="text-2xl font-bold text-gray-800">MatchBusiness</a>
+            </div>
+            <div class="flex gap-4 items-center">
+                <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">Coders</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">Match</a>
+                <a href="#" class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-semibold">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-8 px-2">
+        <h1 class="text-2xl font-bold text-center mb-2">See The Ideas and Match</h1>
+        <div class="text-center mb-6">
+            <span class="block text-gray-500">Matches Aceptados</span>
+            <span class="block text-gray-400 text-sm">Matches aceptados por la empresa para iniciar desarrollo con un Coder.</span>
+        </div>
+        <div class="flex justify-center gap-4 mb-8">
+            <button class="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold">Matches</button>
+            <button class="px-4 py-2 rounded-lg bg-pink-100 text-pink-700 font-semibold">Ideas</button>
+        </div>
+        <div class="flex flex-col gap-8" id="match-list"></div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 px-4">
+            <div class="flex items-center gap-3">
+                <img src="../resource/images/logo.png" alt="Logo" class="w-8 h-8">
+                <span class="font-bold">Match Business</span>
+            </div>
+            <div class="flex gap-3">
+                <img src="../resource/images/x.png" alt="X" class="w-6 h-6">
+                <img src="../resource/images/linkedin.png" alt="linkedin" class="w-6 h-6">
+                <img src="../resource/images/email.png" alt="Email" class="w-6 h-6">
+                <img src="../resource/images/insta.png" alt="Instagram" class="w-6 h-6">
+            </div>
+        </div>
+        <div class="text-center text-gray-400 mt-4">
+            <p>Connecting talented developers with innovative companies<br>to build the future through technology and innovation.</p>
+            <hr class="my-4 border-gray-700">
+            <p>© 2025 Match Business. All rights reserved.</p>
+        </div>
+    </footer>
 </div>
-
-<h2>Matches Aceptados</h2>
-<p>Matches aceptados por la empresa para iniciar desarrollo con un Coder.</p>
-
-<div class="match-list">
-    
-</div>
-
+<script src="https://cdn.tailwindcss.com"></script>
 <script src="../controllers/match.js"></script>
