@@ -77,9 +77,10 @@ export const updateIdea = async (req, res) => {
 export const deleteIdea = async (req, res) => {
     try {
         const idea = await ideasModel.deleteIdeasModel(req.params.id);
-        if (!idea) return res.status(404).json({ error: 'Company not found' });
+        if (!idea) return res.status(404).json({ error: 'Idea not found' });
         res.json({ message: 'Idea deleted successfully' });
     } catch (error) {
+        console.error(error)
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };

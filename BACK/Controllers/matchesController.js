@@ -50,6 +50,7 @@ export const updateMatch = async (req, res) => {
         if (!match) return res.status(404).json({ error: 'Match not found' });
         res.json(match);
     } catch (error) {
+        console.error(error)
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
