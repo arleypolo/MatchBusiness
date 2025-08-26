@@ -62,3 +62,14 @@ export const createIdea = async (req, res) => {
         res.status(500).json({ error: "Internal server error"});
     }
 };
+
+
+export const updateIdea = async (req, res) => {
+    try {
+        const idea = await ideasModel.putIdeasModel(req.params.id, req.body);
+        if (!idea) return res.status(404).json({ error: 'Idea not found' });
+        res.json(idea);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
