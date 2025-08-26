@@ -1,16 +1,17 @@
 import axios from "axios";
 
 const routes = {
-    '/login': '',
+    '/login': '../views/login.html',
     '/home': '../views/LandingPage.html',
+    '/' : '../views/LandingPage.html',
     '/coders': '',
     '/match': '',
-    '/company': ''
+    '/companies': ''
 
-}
+}   
 
  const router = async (hash) => {
-    const path = hash ? routes[hash] : routes['/home'];
+    const path = routes[hash] ?? routes['/home'];
     try {
         const html = await axios.get(path); // get html 
         return await html.data; 
