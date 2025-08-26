@@ -42,6 +42,7 @@ export const putIdeasModel = async (id, { title, description }) => {
     return result.rows[0];
 };
 
+
 export const deleteIdeasModel = async (id) => {
     const client = await db.connect();
     try {
