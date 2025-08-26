@@ -9,10 +9,24 @@ export const getMyMatches = async (id) => {
     return result.rows;
 }
 
-export const postMatchesModel = async ({ id_idea, match_date }) => {
-    const query = `INSERT INTO matches (id_idea, match_date, match_status) 
-                   VALUES ($1, $2, $3) RETURNING *`;
+export const postMatchesModel = async ({ id_idea }) => {
+    const query = `INSERT INTO matches (id_idea, match_status) 
+                   VALUES ($1, $2) RETURNING *`;
     
-    const result = await db.query(query, [id_idea, match_date, 'Accepted']);
+    const result = await db.query(query, [id_idea, 'Accepted']);
     return result.rows[0]; 
 };
+
+export const putMatchesModel = async (id, { match_status }) => {
+    const query = `UPDATE matches 
+                SET match_status = $1
+                WHERE id_idea = $2 RETURNING *`;
+    await db.query(query, [ match_status, id]);
+};
+
+export const deleteMacthesModel = async (id) => {
+    const queryMatch = `DELETE FROM matches WHERE id_match = $1 RETURNING *`;
+    const result = await db.query(queryMatch, [id]);
+    return result.rows[0];
+};
+
