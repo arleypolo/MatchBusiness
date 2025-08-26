@@ -1,5 +1,8 @@
-async function getIdeas(url) {
-  const response = await fetch(url);
+
+import { getUserId } from './session.js';
+
+async function getIdeasById(id) {
+  const response = await fetch(`http://localhost:3000/ideas/${id}`);
   if (!response.ok) throw new Error('Error al obtener ideas');
   return await response.json();
 }
@@ -43,6 +46,7 @@ function renderIdeas(ideas, container) {
   }).join('');
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const ideasBtn = document.getElementById('btn-ideas');
   const ideasContainer = document.getElementById('ideas-list');
@@ -51,7 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Cargar ideas automáticamente al cargar la página
   async function loadIdeas() {
     try {
-      const ideas = await getIdeas('http://localhost:3000/ideas');
+      const userId = getUserId();
+      if (!userId) {
+        ideasContainer.innerHTML = `<p class="text-center text-red-500">Debes iniciar sesión para ver tus ideas.</p>`;
+        return;
+      }
+      const ideas = await getIdeasById(userId);
       renderIdeas(ideas, ideasContainer);
     } catch (err) {
       ideasContainer.innerHTML = `<p class="text-center text-red-500">No se pudieron cargar las ideas.</p>`;
