@@ -1,4 +1,4 @@
-import { getUserToken } from './session.js';
+import { getUserToken } from '../utils/localStorage.js';
 
 async function fetchCoders() {
   const token = getUserToken();

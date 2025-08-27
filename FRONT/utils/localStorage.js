@@ -5,7 +5,7 @@ export function setupUserSession({ id, role, token }) {
     if (token) localStorage.setItem('user_token', token);
 }
 
-// get a id from user auth
+// get an id from user auth
 export function getUserId() {
     return localStorage.getItem('user_id');
 }

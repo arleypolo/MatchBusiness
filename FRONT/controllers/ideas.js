@@ -1,5 +1,5 @@
 
-import { getUserId } from './session.js';
+import { getUserId } from '../utils/localStorage.js';
 
 async function getIdeasById(id) {
   const response = await fetch(`http://localhost:3000/ideas/${id}`);

@@ -1,7 +1,7 @@
 import  apiLogin  from "../models/loginModel";
 import { handleLogin } from "../utils/handleForms";
 import { showMessageLogin } from "../index.js";
-import setupLocalStorage from "../utils/localStorage";
+import * as localstorage from "../utils/localStorage";
 
 
 const loginController = async() => {
@@ -16,8 +16,7 @@ const loginController = async() => {
     
     
       
-        setupLocalStorage('token', data.token);
-        setupLocalStorage('role', data.user.role);
+        localstorage.setupUserSession({id: data.user.id, role: data.user.role, token: data.token});
         if(data.user.role === 'coder'){
             window.location.hash = '#/companies';
         }
