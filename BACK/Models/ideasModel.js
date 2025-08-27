@@ -17,21 +17,21 @@ export const getIdea = async () => {
 }
 
 export const getIdeasByUserModel = async (id) => {
-  try {
-    const query = `
-      SELECT i.id_idea, i.title, i.description, i.created_at,
-             cod.first_name AS coder_name, cod.last_name AS coder_lastName,
-             c.company_name AS company
-      FROM ideas i
-      JOIN coders cod ON cod.id_coder = i.id_coder
-      JOIN companies c ON c.id_company = i.id_company
-      WHERE i.id_coder = $1 OR i.id_company = $1
+    try {
+        const query = `
+        SELECT i.id_coder,c.company_name, i.id_idea, i.title, i.description, i.created_at,
+        cod.first_name AS coder_name, cod.last_name AS coder_lastName,
+        c.company_name AS company
+        FROM ideas i
+        JOIN coders cod ON cod.id_coder = i.id_coder
+        JOIN companies c ON c.id_company = i.id_company
+        WHERE i.id_coder = $1 OR i.id_company = $1
     `;
-    const data = await db.query(query, [id]);
-    return data.rows;
-  } catch (error) {
-    throw 'Error getting ideas by coder/company id: ' + error + ' id: ' + id;
-  }
+        const data = await db.query(query, [id]);
+        return data.rows;
+    } catch (error) {
+        throw 'Error getting ideas by coder/company id: ' + error + ' id: ' + id;
+    }
 };
 
 
