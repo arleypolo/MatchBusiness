@@ -16,6 +16,25 @@ export const getIdea = async () => {
     }
 }
 
+export const getIdeasByUserModel = async (id) => {
+  try {
+    const query = `
+      SELECT i.id_idea, i.title, i.description, i.created_at,
+             cod.first_name AS coder_name, cod.last_name AS coder_lastName,
+             c.company_name AS company
+      FROM ideas i
+      JOIN coders cod ON cod.id_coder = i.id_coder
+      JOIN companies c ON c.id_company = i.id_company
+      WHERE i.id_coder = $1 OR i.id_company = $1
+    `;
+    const data = await db.query(query, [id]);
+    return data.rows;
+  } catch (error) {
+    throw 'Error getting ideas by coder/company id: ' + error + ' id: ' + id;
+  }
+};
+
+
 export const getIdeaByIdModel = async (id) => {
     try {
         const data = await db.query('SELECT * FROM ideas WHERE id_idea = $1', [id]);
@@ -42,18 +61,4 @@ export const deleteIdeasModel = async (id) => {
     const queryIdea = `DELETE FROM ideas WHERE id_idea = $1 RETURNING *`;
     const result = await db.query(queryIdea, [id]);
     return result.rows[0];
-};
-
-export const IdeasModel = {
-  async getIdeasByCoder(idCoder) {
-    const query = `
-      SELECT i.id_idea, i.title, i.description, i.created_at, 
-             i.id_company, i.id_coder
-      FROM ideas i
-      WHERE i.id_coder = $1
-      ORDER BY i.created_at DESC
-    `;
-    const { rows } = await db.query(query, [idCoder]);
-    return rows;
-  }
 };

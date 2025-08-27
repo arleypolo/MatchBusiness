@@ -28,6 +28,18 @@ export const getIdea = async (req, res) => {
     }
 };
 
+
+export const getIdeaByUsers = async (req, res) => {
+    try {
+        const { id } = req.params; 
+        const users = await ideasModel.getIdeasByUserModel(id);
+        res.json(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
 export const getIdeaById = async (request, response) => {
     try {
         const { id } = request.params;
@@ -85,21 +97,3 @@ export const deleteIdea = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
-export const getIdeasByCoder = async (req, res) => {
-    try {
-        const { idCoder } = req.params;
-
-        const ideas = await ideasModel.IdeasModel.getIdeasByCoder(idCoder);
-
-        if (ideas.length === 0) {
-            return res.status(200).json([]);
-        }
-
-        res.status(200).json(ideas);
-    } catch (error) {
-        console.error("Error en getIdeasByCoder:", error);
-        res.status(500).json({ message: "Error al obtener ideas" });
-    }
-};
-
