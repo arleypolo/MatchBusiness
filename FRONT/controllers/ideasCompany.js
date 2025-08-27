@@ -33,7 +33,7 @@ function renderIdeas(ideas, container) {
                 <span class="font-bold text-lg text-gray-900">${ideaTitle}</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-pink-600 font-bold text-sm">Empresa: ${idea.campany_name}</span>
+                <span class="text-pink-600 font-bold text-sm">Empresa: ${idea.company_name}</span>
               </div>
             </div>
             <div class="text-gray-700 mb-2">
