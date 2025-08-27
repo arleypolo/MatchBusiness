@@ -1,4 +1,3 @@
-
 import { getUserId } from './session.js';
 
 async function getIdeasById(id) {
@@ -22,24 +21,30 @@ function renderIdeas(ideas, container) {
     const ideaDesc = idea.description || 'Sin descripción';
     const date = idea.created_at ? new Date(idea.created_at).toLocaleDateString() : '';
     return `
-      <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col gap-4 md:flex-row md:gap-6 max-w-3xl mx-auto">
-        <div class="flex flex-col items-center md:items-start gap-2 w-full md:w-1/4">
-          <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-xl font-bold text-white">${getInitialsFromId(idea.id_coder)}</div>
-          <span class="font-semibold text-gray-800">ID: ${idea.id_coder}</span>
-        </div>
-        <div class="flex-1">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-lg text-gray-900">${ideaTitle}</span>
+      <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col gap-4 max-w-3xl mx-auto">
+        <div class="flex flex-col md:flex-row md:gap-6">
+          <div class="flex flex-col items-center md:items-start gap-2 w-full md:w-1/4 mb-4 md:mb-0">
+            <div class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-xl font-bold text-white">${getInitialsFromId(idea.id_coder)}</div>
+            <span class="font-semibold text-gray-800">ID: ${idea.id_coder}</span>
+          </div>
+          <div class="flex-1">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-lg text-gray-900">${ideaTitle}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-pink-600 font-bold text-sm">Empresa: ${idea.id_company}</span>
+              </div>
             </div>
-            <div class="flex items-center gap-2">
-              <span class="text-pink-600 font-bold text-sm">Empresa: ${idea.id_company}</span>
+            <div class="text-gray-700 mb-2">
+              <span class="font-semibold">Propuesta:</span> ${ideaDesc}
+            </div>
+            <div class="text-xs text-purple-500 mb-2">${date ? `Enviado: ${date}` : ''}</div>
+            <div class="flex gap-2 mt-2 w-full justify-start">
+              <button class="border border-gray-300 rounded-lg px-3 py-1 text-xs flex items-center gap-1"><span>👁️</span> Ver Perfil Completo</button>
+              <button class="bg-pink-100 text-pink-700 rounded-lg px-3 py-1 text-xs font-semibold"><span>💖</span> Match! </button>
             </div>
           </div>
-          <div class="text-gray-700 mb-2">
-            <span class="font-semibold">Propuesta:</span> ${ideaDesc}
-          </div>
-          <div class="text-xs text-purple-500 mb-2">${date ? `Enviado: ${date}` : ''}</div>
         </div>
       </div>
     `;
