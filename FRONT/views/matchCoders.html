@@ -1,0 +1,35 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="module" src="../controllers/matchCoders.js"></script>
+
+<div class="w-full bg-gray-50 min-h-screen">
+    <main class="max-w-4xl mx-auto py-8 px-2">
+        <h1 class="text-2xl font-bold text-center mb-2">See your Ideas and Matches</h1>
+        <div class="text-center mb-6">
+            <span class="block text-gray-500">Matches Aceptados</span>
+            <span class="block text-gray-400 text-sm">Tus matches aceptados.</span>
+        </div>
+        <div class="flex justify-center gap-4 mb-8">
+            <button id="btn-ideas" class="px-4 py-2 rounded-lg bg-pink-100 text-pink-700 font-semibold">Ideas</button>
+            <button id="btn-matches"
+                class="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold">Matches</button>
+        </div>
+        <div class="max-w-5xl mx-auto px-6 py-10">
+            <!-- Card contenedor -->
+            <div class="bg-white border border-gray-300 rounded-2xl shadow-lg p-8">
+                <!-- Encabezado -->
+                <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-3 flex items-center gap-2">
+                    ❤️ Matches - Empresas interesadas
+                </h1>
+                <p class="text-gray-700 mb-8 text-sm md:text-base leading-relaxed">
+                    Estas empresas han mostrado interés en tus propuestas.
+                    El equipo de <span class="font-semibold text-pink-600">Riwi</span> se pondrá en contacto contigo
+                    para coordinar los próximos pasos.
+                </p>
+
+                <!-- Lista de matches -->
+                <div class="flex flex-col gap-8" id="match-list"></div>
+            </div>
+        </div>
+
+    </main>
+</div>
