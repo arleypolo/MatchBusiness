@@ -43,3 +43,17 @@ export const deleteIdeasModel = async (id) => {
     const result = await db.query(queryIdea, [id]);
     return result.rows[0];
 };
+
+export const IdeasModel = {
+  async getIdeasByCoder(idCoder) {
+    const query = `
+      SELECT i.id_idea, i.title, i.description, i.created_at, 
+             i.id_company, i.id_coder
+      FROM ideas i
+      WHERE i.id_coder = $1
+      ORDER BY i.created_at DESC
+    `;
+    const { rows } = await db.query(query, [idCoder]);
+    return rows;
+  }
+};
