@@ -14,6 +14,14 @@
             <button id="btn-matches"
                 class="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold">Matches</button>
         </div>
+        <div class="flex justify-end">
+            <button
+               id="addIdea" class="w-38 bg-blue-500 hover:bg-blue-600 text-white font-medium py-1.5 px-4 rounded-md text-sm shadow-md mb-4 transition">
+                Agregar Idea 💡
+            </button>
+        </div>
+
+
         <div class="flex flex-col gap-8" id="ideas-list">
             <!-- Container -->
         </div>
@@ -59,6 +67,53 @@
                         <i class="fa-solid fa-xmark"></i> Cancelar
                     </button>
                     <button id="btn-save"
+                        class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay Add New Idea-->
+        <div id="add-modal-overlay" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
+            <!-- Modal -->
+            <div class="bg-white rounded-2xl shadow-lg w-full max-w-lg p-6">
+                <h2 id="append" class="text-xl font-bold mb-4">+ Agregar Nueva Propuesta </h2>
+
+                <!-- Warning -->
+                <div id="warning" class="bg-yellow-100 border-l-4 border-yellow-500 p-3 rounded-md mb-4">
+                    <h4 class="font-semibold text-yellow-700">Nueva Propuesta</h4>
+                    <p class="text-sm text-yellow-700">
+                        Envia tu propuesta innovadora a las empresas aliadas. Asegúrate de ser específico sobre tu
+                        enfoque, metodología y el valor que puedes aportar
+                    </p>
+                </div>
+
+                <!-- Form -->
+                <div class="mb-3">
+                    <h3 class="font-semibold text-gray-800 mb-1">Seleccionar Empresa *</h3>
+                    <select id="newIdeaCompany"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </select>
+                    <h3 class="font-semibold text-gray-800 mb-1">Título de tu Propuesta  *</h3>
+                    <input type="text" id="inp-title-addIdea"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="font-semibold text-gray-800 mb-1">Descripción de tu propuesta *</h3>
+                    <textarea id="txt-description-addIdea" rows="4"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex justify-end gap-2">
+                    <button id="btn-cancel-add"
+                        class="px-4 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold">
+                        <i class="fa-solid fa-xmark"></i> Cancelar
+                    </button>
+                    <button id="btn-save-add"
                         class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold">
                         <i class="fa-solid fa-floppy-disk"></i> Guardar
                     </button>

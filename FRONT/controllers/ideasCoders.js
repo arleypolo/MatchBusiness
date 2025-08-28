@@ -82,6 +82,56 @@ function renderIdeas(ideas, container) {
 
 
 
+function addIdea() {
+  document.getElementById('addIdea').addEventListener('click', async (event) => {
+    event.preventDefault();
+    document.getElementById("add-modal-overlay").classList.remove("hidden");
+    document.getElementById("add-modal-overlay").classList.add("flex");
+
+    const selectCompany = document.getElementById('newIdeaCompany');
+    const companies = await getCompanies();
+
+    companies.forEach(company => {
+      console.log(company.id_company);
+      console.log(company.company_name);
+
+      const companyOption = document.createElement('option');
+      companyOption.value = company.id_company;
+      companyOption.textContent = company.company_name;
+      selectCompany.appendChild(companyOption)
+
+    });
+  })
+  document.getElementById('btn-cancel-add').addEventListener('click', () => {
+    document.getElementById("add-modal-overlay").classList.add("hidden");
+    document.getElementById("add-modal-overlay").classList.remove("flex");
+  })
+  document.getElementById('btn-save-add').addEventListener('click', async (event) => {
+      event.preventDefault();
+      const newIdeaTitle = document.getElementById('inp-title-addIdea').value;
+      const newIdeaDescp = document.getElementById('txt-description-addIdea').value;
+
+      const userId = getUserId();
+      const companyId = document.getElementById('newIdeaCompany').value;
+
+      if (!newIdeaTitle || !newIdeaDescp || !companyId) {
+        alert('Por favor, completa todos los campos.');
+        return;
+      }
+      const newIdea = {
+        id_coder: userId,
+        id_company: companyId,
+        title: newIdeaTitle,
+        description: newIdeaDescp
+      };
+      await postIdea(newIdea);
+      location.reload();
+  })
+
+  
+}
+
+
 function editIdea() {
   document.getElementById('ideas-list').addEventListener('click', async (event) => {
     if (event.target.matches("button[data-id]")) {
@@ -93,7 +143,7 @@ function editIdea() {
 
       document.getElementById('proposal').innerHTML = `Editar Propuesta - ${idea.title}`
       document.getElementById('company').innerHTML = `Empresa: ${idea.company}`
-      
+
       console.log(idea.id_idea)
 
       document.getElementById('btn-cancel').addEventListener('click', () => {
@@ -118,17 +168,17 @@ function editIdea() {
   })
 }
 
-async function getIdea(ideaId){
-  try{
+async function getIdea(ideaId) {
+  try {
     console.log(ideaId)
     const res = await fetch(`http://localhost:3000/ideas/${ideaId}`)
-    if (!res.ok){
+    if (!res.ok) {
       throw new Error(`Error http: ${res.status}`);
     }
     const idea = await res.json();
 
     const res1 = await fetch(`http://localhost:3000/companies/${idea[0].id_company}`)
-    if (!res1.ok){
+    if (!res1.ok) {
       throw new Error(`Error http: ${res1.status}`)
     }
     const company = await res1.json();
@@ -137,25 +187,61 @@ async function getIdea(ideaId){
 
     return idea[0]
 
-  } catch(err) {
-    console.error("There was an error bringing info: ",err)
+  } catch (err) {
+    console.error("There was an error bringing info: ", err)
   }
 }
 
-async function putIdea(idIdea, updatedData){
-  try{
-    const res = await fetch(`http://localhost:3000/ideas/${idIdea}`,{
-      method: "PUT",
+
+async function getCompanies() {
+  try {
+    const res = await fetch(`http://localhost:3000/companies`)
+    console.log(res);
+    if (!res.ok) {
+      throw new Error(`Error http: ${res.status}`);
+    }
+    const companies = await res.json();
+    console.log(companies);
+    return companies
+
+  } catch (err) {
+    console.error("There was an error bringing info: ", err)
+  }
+}
+
+
+async function postIdea(newIdea) {
+  try {
+    const res = await fetch(`http://localhost:3000/ideas`, {
+      method: "POST",
       headers: {
-        "Content-Type" : "application/json"
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(updatedData) 
+      body: JSON.stringify(newIdea)
     });
 
-    if (!res.ok){
+    if (!res.ok) {
       throw new Error(`Error HTTP: ${res.status}`)
     }
-  } catch (err){
+  } catch (err) {
+    alert('Error al agregar la idea')
+  }
+}
+
+async function putIdea(idIdea, updatedData) {
+  try {
+    const res = await fetch(`http://localhost:3000/ideas/${idIdea}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedData)
+    });
+
+    if (!res.ok) {
+      throw new Error(`Error HTTP: ${res.status}`)
+    }
+  } catch (err) {
     alert('Error al actualizar la idea')
   }
 }
@@ -181,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   loadIdeas();
+  addIdea();
   editIdea();
   ideasBtn.addEventListener('click', loadIdeas);
 });
