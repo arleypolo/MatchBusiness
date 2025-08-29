@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body>
-    <header class="w-full bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto flex justify-between items-center py-3 px-6">
-            <!-- Logo -->
-            <div class="flex items-center gap-2">
-                <img src="./assets/logo.png" alt="logo" class="w-8 h-8">
-                <span class="text-xl font-bold">
-                    <span class="text-[#2b9d4d]">Match</span><span class="text-[#1e5bb6]">Business</span>
-                </span>
-            </div>
-
-            <!-- Botón Login -->
-            <button
-                class="bg-[#1e88e5] hover:bg-[#1565c0] text-white text-sm font-medium py-2 px-5 rounded-md transition"
-                id="login-btn">
-                Login
-            </button>
-        </div>
-    </header>
+export function homeView() {
+    const view = `
     <div class="text-center py-14 bg-[#f6fcf9]">
         <!-- Texto superior con estrellita -->
         <p class="text-[#7ecb9c] font-semibold text-lg flex items-center justify-center gap-2 mb-3">
@@ -186,51 +159,6 @@
             </p>
         </div>
     </div>
-
-    <!-- modal -->
-
-    <!-- Overlay -->
-    <div id="login-modal-overlay" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden">
-        <!-- Modal -->
-        <div id="login-modal" class="bg-white rounded-2xl shadow-lg w-full max-w-md p-8">
-            <!-- Header -->
-            <div class="flex justify-center mb-6">
-                <img src="./assets/logo.png" alt="Logo" class="mr-2 w-8 h-8">
-                <h1 class="text-2xl font-semibold text-blue-500">MatchBusiness</h1>
-            </div>
-
-            <h2 class="text-lg font-medium mb-2">Iniciar Sesión</h2>
-            <p class="mb-6 text-gray-600">Bienvenido de vuelta</p>
-
-            <!-- Login Form -->
-            <form id="login-form">
-                <div class="mb-4">
-                    <label for="login-user" class="block text-sm font-medium text-gray-700">Número de Documento</label>
-                    <input type="number" id="login-user" name="id_user" placeholder="Tu documento"
-                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-                        required>
-                </div>
-                <div class="mb-6">
-                    <label for="login-password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-                    <input type="password" id="login-password" name="password" placeholder="********"
-                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
-                        required>
-                </div>
-                <button type="submit"
-                    class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
-                    Iniciar Sesión
-                </button>
-            </form>
-
-            <!-- Footer -->
-            <div class="mt-4 flex justify-between items-center">
-                <button id="login-close-btn"
-                    class="text-blue-500 hover:underline">← Volver al Home</button>
-            </div>
-        </div>
-    </div>
-
-    <script type="module" src="../src/auth/login.js"></script>
-</body>
-
-</html>
+    `
+    return view;
+}

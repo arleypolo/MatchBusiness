@@ -1,3 +1,0 @@
-Son la representación visual de los datos, todo lo que tenga que ver con la interfaz gráfica va aquí.
-Ni el modelo ni el controlador se preocupan de cómo se verán los datos, esa responsabilidad es únicamente de la vista.
-
