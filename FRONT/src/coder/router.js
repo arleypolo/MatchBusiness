@@ -1,10 +1,13 @@
-import { codersView, codersSetup } from "./views/coders.js";
+import { homeView } from "./views/home.js";
 import { ideasView, ideasSetup } from "./views/ideas.js";
 import { matchesView, matchesSetup } from "./views/matches.js";
 
 export function router(){
     const hash = window.location.hash.slice(1);
     switch (hash){
+        case 'home':
+            document.getElementById('coder-content').innerHTML = homeView();
+            break;
         case 'ideas':
             document.getElementById('coder-content').innerHTML = ideasView();
             ideasSetup();
