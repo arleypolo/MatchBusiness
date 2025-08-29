@@ -17,7 +17,7 @@ export function router(){
             matchesSetup();
             break;
         default:
-            document.getElementById('coder-content').innerHTML = `<h2 class="text-xl font-bold p-4">Welcome! Please select a section.</h2>`;
+            document.getElementById('coder-content').innerHTML = homeView();
             break;
     }
 }
