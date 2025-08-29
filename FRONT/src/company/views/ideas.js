@@ -23,11 +23,11 @@ export async function ideasSetup(){
     container.innerHTML = '';
     ideas.forEach(idea => {
         container.innerHTML += `
-        <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col gap-4 max-w-3xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col gap-4 w-[700px] mx-auto">
             <div class="flex flex-col md:flex-row md:gap-6">
                 <div class="flex flex-col items-center md:items-start gap-2 w-full md:w-1/4 mb-4 md:mb-0">
                     <div
-                        class="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-xl font-bold text-white">
+                        class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center text-xl font-bold text-white">
                         ${getCompanyLogo(idea.company_name)}
                         </div>
                     <span class="font-semibold text-gray-800">Coder: ${idea.coder_name} ${idea.coder_lastname}
