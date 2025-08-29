@@ -1,4 +1,5 @@
 import { getToken, getUser } from "../../auth/token.js";
+import * as events from "node:events";
 
 export function ideasView() {
     const view = `
@@ -44,9 +45,9 @@ export async function ideasSetup(){
                     <div class="text-xs text-purple-500 mb-2">${new Date(idea.created_at).toLocaleDateString()}</div>
                     <div class="flex gap-2 mt-2 w-full justify-start">
                         <button
-                            class="border border-gray-300 rounded-lg px-3 py-1 text-xs flex items-center gap-1"><span>👁️</span>
+                            class="border border-gray-300 rounded-lg px-3 py-1 text-xs flex items-center gap-1 hover:cursor-pointer"><span>👁️</span>
                             Ver Perfil Completo</button>
-                        <button class="bg-pink-100 text-pink-700 rounded-lg px-3 py-1 text-xs font-semibold"><span>💖</span>
+                        <button class="bg-pink-100 text-pink-700 rounded-lg px-3 py-1 text-xs font-semibold hover:cursor-pointer" id="match-button" data-id="${idea.id_idea}"><span>💖</span>
                             Match! </button>
                     </div>
                 </div>
@@ -83,5 +84,23 @@ function getCompanyLogo(company) {
             return `<div class="w-12 h-12 flex items-center justify-center rounded-md bg-red-500 text-white font-bold text-lg">
                 ${company ? company[0] : "?"}
               </div>`;
+    }
+}
+
+export const matchIdea = async (id_idea) => {
+    try{
+        const res = await fetch(`http://localhost:3000/matches`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id_idea: id_idea})
+        });
+
+        if(!res.ok){ // in case the status fail
+            throw new Error('Failed to fetch matches');
+        }
+    }catch(error){
+        console.error("Error fetching matches:", error);
     }
 }
