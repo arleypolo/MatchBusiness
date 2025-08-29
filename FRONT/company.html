@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="w-full bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center py-3 px-6">
+            <!-- Logo -->
+            <div class="flex items-center gap-2">
+                <img src="./assets/logo.png" alt="logo" class="w-8 h-8">
+                <span class="text-xl font-bold">
+                    <span class="text-[#2b9d4d]">Match</span><span class="text-[#1e5bb6]">Business</span>
+                </span>
+            </div>
+            <!-- Links de navegación -->
+            <nav class="flex items-center gap-8 text-[#333] font-medium">
+                <a href="#coders" class="hover:text-[#2b9d4d] transition">Coders</a>
+                <a href="#ideas" class="hover:text-[#2b9d4d] transition">Ideas</a>
+                <a href="#matches" class="hover:text-[#2b9d4d] transition">Matches</a>
+            </nav>
+            <button
+                class="bg-[#1e88e5] hover:bg-[#1565c0] text-white text-sm font-medium py-2 px-5 rounded-md transition"
+                id="logout-btn">
+                Log Out
+            </button>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main id="company-content">
+
+    </main>
+    <script type="module" src="./src/company/index.js"></script>
+</body>
+
+</html>
+
+
