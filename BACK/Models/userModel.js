@@ -1,6 +1,6 @@
 import db from "../config/db.js";
 
-// Buscar usuario por username
+// Find user by username (id_user)
 export const findUserByUsername = async (id_user) => {
     const query = "SELECT * FROM users WHERE id_user = $1";
     const values = [id_user];

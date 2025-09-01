@@ -1,21 +1,23 @@
 import db from '../config/db.js';
 
+// Create a new idea
 export const sendIdea = async ({ id_coder, id_company, title, description }) => {
     const queryIdea = `INSERT INTO ideas (id_coder, id_company, title, description)
     VALUES ($1, $2, $3, $4)`
     await db.query(queryIdea, [id_coder, id_company, title, description]);
 };
 
+// Get all ideas
 export const getIdea = async () => {
     try {
         const data = await db.query('SELECT * FROM ideas');
         return data.rows; // return rows
-
     } catch (error) { // handle error
         throw 'Error getting companies: ' + error;
     }
 }
 
+// Get ideas by user (coder or company) ID
 export const getIdeasByUserModel = async (id) => {
     try {
         const query = `
@@ -34,7 +36,7 @@ export const getIdeasByUserModel = async (id) => {
     }
 };
 
-
+// Get an idea by ID
 export const getIdeaByIdModel = async (id) => {
     try {
         const data = await db.query('SELECT * FROM ideas WHERE id_idea = $1', [id]);
@@ -44,11 +46,13 @@ export const getIdeaByIdModel = async (id) => {
     }
 }
 
+// Create a new idea (with returning)
 export const postIdeaModel = async ({ id_coder, id_company, title, description }) => {
     const queryIdeas = `INSERT INTO ideas (id_coder, id_company, title, description) VALUES ($1, $2, $3, $4) RETURNING *`;
     await company.query(queryIdeas, [id_coder, id_company, title, description]);
 };
 
+// Update an existing idea by ID
 export const putIdeasModel = async (id, { title, description }) => {
     const query = `UPDATE ideas 
                 SET title = $1, description = $2
@@ -57,6 +61,7 @@ export const putIdeasModel = async (id, { title, description }) => {
     return result.rows[0];
 };
 
+// Delete an idea by ID
 export const deleteIdeasModel = async (id) => {
     const queryIdea = `DELETE FROM ideas WHERE id_idea = $1 RETURNING *`;
     const result = await db.query(queryIdea, [id]);

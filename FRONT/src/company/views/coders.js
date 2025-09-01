@@ -1,5 +1,6 @@
 import { getToken } from "../../auth/token.js";
 
+// View for displaying coders list and profile modal
 export function codersView() {
     const view = `
     <div class="max-w-6xl mx-auto py-10 px-4">
@@ -65,6 +66,7 @@ export function codersView() {
     return view;
 }
 
+// Setup function to fetch and render coders
 export async function codersSetup() {
     const coders = await getCoders();
     const container = document.getElementById('coders-list');
@@ -92,6 +94,7 @@ export async function codersSetup() {
     viewProfile();
 }
 
+// Fetch all coders from API
 async function getCoders() {
     try {
         const token = getToken();
@@ -112,6 +115,7 @@ async function getCoders() {
     }
 }
 
+// Handle view profile modal logic
 function viewProfile() {
   document.getElementById("coders-list").addEventListener('click', async (event) => {
     if (event.target.matches("button[data-id]")) {
@@ -140,6 +144,7 @@ function viewProfile() {
   })
 };
 
+// Fetch coder details and number of ideas
 async function getCoder(coderId){
   try{
     const token = getToken();
