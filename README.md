@@ -1,85 +1,93 @@
+
 # MatchBusiness
 
-Este documento explica cómo colaborar de forma organizada para que el código sea limpio y el trabajo en equipo más eficiente.
+MatchBusiness is a digital platform designed to connect talented developers (coders) with innovative companies. Companies can post real-world challenges, and coders can showcase their skills by solving them. The goal is to bridge the gap between talent and business innovation, accelerating digital transformation.
+
+🌐 **Live Demo:** [https://matchbusiness-web.vercel.app/](https://matchbusiness-web.vercel.app/)
 
 ---
 
-## 🔒 Reglas principales
-- Nadie puede hacer **push directo** a `develop` o `main`.  
-- Todos los cambios deben pasar por un **Pull Request (PR)**.  
-- Los PRs necesitan **2 aprobación** antes de poder hacer merge.  
+## 🚀 Features
+- User authentication (login & registration)
+- Explore companies and their innovation challenges
+- Developers can showcase their solutions
+- Companies can evaluate coders’ skills based on real tasks
 
 ---
 
-## 🌱 Flujo de trabajo con ramas
+## 🛠️ Technologies Used
 
-1. **Actualizar la rama `develop`**
-   ```bash
-   git checkout develop
-   git pull origin develop
-   ```
+### Frontend
+- HTML5, CSS3, JavaScript (SPA)
+- TailwindCSS (styling)
+- Vite (build tool)
+- Deployed on **Vercel**
 
-2. **Crear una nueva rama desde `develop`**
-   - Para nuevas funciones: `feature/nombre-funcionalidad`
-   - Para correcciones: `fix/nombre-bug`
-   ```bash
-   git checkout -b feature/login
-   ```
-
-3. **Commits claros y consistentes**
-   Usamos :
-   - `feat: implementar login con JWT`
-   - `fix: corregir validación de email`
-
-   Ejemplo:
-   ```bash
-   git commit -m "feat: añadir autenticación con JWT"
-   ```
-
-4. **Subir cambios**
-   ```bash
-   git push origin feature/login
-   ```
-
-5. **Abrir un Pull Request (PR) hacia `develop`**
-   - Título claro: `feat: login con JWT`
-   - Descripción con:
-     - Qué se hizo.
-     - Por qué se hizo.
-
-6. **Revisión del PR**
-   - Al menos un compañero debe aprobarlo.
-   - Resolver los comentarios antes del merge.
-
-7. **Merge a `develop`**
-   - Solo los responsables del repositorio pueden hacer merge.
-   - Nunca hacer *merge directo* a `main`.
+### Backend
+- Node.js with Express
+- PostgreSQL database
+- Authentication & API endpoints
+- Deployed on **Render**
 
 ---
 
-## 📌 Convenciones adicionales
-- **Pull Requests**: siempre hacia `develop`.  
-- **Commits**: deben ser pequeños, claros y en tiempo presente.  
+## ⚙️ Installation & Setup
 
----
+### Prerequisites
+Make sure you have installed:
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [PostgreSQL](https://www.postgresql.org/) (if running locally)
 
-## ✅ Checklist antes de un Pull Request
-- [ ] Mi rama está actualizada con `develop`.
-- [ ] He probado mis cambios localmente.
-- [ ] Mi código cumple con los estándares del proyecto.
-- [ ] Mi PR tiene un título y descripción claros.
-
----
-
-## 📖 Resumen visual del flujo
-```mermaid
-flowchart TD
-    A[Crear rama desde develop] --> B[Hacer cambios y commits]
-    B --> C[Push al remoto]
-    C --> D[Abrir Pull Request a develop]
-    D --> E[Revisión y aprobación]
-    E --> F[Merge a develop]
-    F --> G[Test y validaciones]
-    G --> H[Si está estable -> Merge a main]
+### Install dependencies
+For both frontend and backend, run:
+```bash
+npm install
 ```
 
+### Environment variables
+Create a `.env` file in the backend directory with the following variables:
+```env
+PORT=5000
+DATABASE_URL=your_postgresql_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
+
+### Run the project
+
+#### Backend
+```bash
+cd BACK
+npm run dev
+```
+
+#### Frontend
+```bash
+cd FRONT
+npm run dev
+```
+
+Open in your browser:
+- Frontend: `http://localhost:5173`
+- Backend API: `http://localhost:5000`
+
+---
+
+## 📡 API Endpoints
+- `POST /auth/login` – User login
+- `POST /auth/register` – User registration
+- `GET /companies` – List of companies
+- `GET /companies/:id` – Company details
+
+---
+
+## 👨‍💻 Team
+- Andrés Felipe Londoño
+- Brayan Duque
+- Pablo Jiménez Mora
+- Brisbany Puerta Herrera
+- Menelik Puerta Herrera
+
+---
+
+## 📄 License
+This project is for educational purposes only.
