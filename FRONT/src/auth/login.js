@@ -1,5 +1,6 @@
 import { saveAuth } from "./token.js";
 
+// Login function to handle modal and authentication
 function logIn() {
     document.getElementById("login-btn").addEventListener("click", (event) => {
         event.preventDefault();
@@ -12,7 +13,7 @@ function logIn() {
             document.getElementById("login-modal-overlay").classList.add("hidden");
         });
 
-        // Login
+        // Login form submit handler
         document.getElementById("login-form").addEventListener("submit", async (e) => {
             e.preventDefault();
             const id_user = document.getElementById("login-user").value;

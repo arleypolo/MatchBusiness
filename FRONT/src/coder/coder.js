@@ -1,6 +1,7 @@
 import { router } from "./router.js";
 import { clearAuth } from "../auth/token.js";
 
+// Logout and navigation setup for coder dashboard
 document.getElementById('logout-btn').addEventListener('click', () => {
     clearAuth();
     window.location.href = 'index.html'; // Redirect to login or home page after logout

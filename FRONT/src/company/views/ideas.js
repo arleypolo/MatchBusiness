@@ -1,14 +1,13 @@
 import { getToken, getUser } from "../../auth/token.js";
-import * as events from "node:events";
 
+// View for displaying received ideas
 export function ideasView() {
     const view = `
     <div class="w-full bg-gray-50 min-h-screen">
         <main class="max-w-4xl mx-auto py-8 px-2">
             <h1 class="text-2xl font-bold text-center mb-2">Ideas recibidas</h1>
             <div class="text-center mb-6">
-                <span class="block text-gray-400 text-sm">Ideas enviadas por coders para tus desafíos. Puedes dar "Match" a
-                    las que te interesen.</span>
+                <span class="block text-gray-400 text-sm">Ideas sent by coders for your challenges. You can "Match" with those you are interested in.</span>
             </div>
             <div class="flex flex-col gap-8" id="ideas-list"></div>
         </main>
@@ -17,11 +16,13 @@ export function ideasView() {
     return view;
 }
 
+// Setup function to fetch and render ideas
 export async function ideasSetup(){
-    const ideas = await getIdeas(getUser().id);
+    const ideas = await getIdeas(getUser().id); // Fetch ideas for the current company
     const container = document.getElementById('ideas-list');
     container.innerHTML = '';
     ideas.forEach(idea => {
+        // Render each idea card
         container.innerHTML += `
         <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-6 flex flex-col gap-4 w-[700px] mx-auto">
             <div class="flex flex-col md:flex-row md:gap-6">
@@ -40,13 +41,13 @@ export async function ideasSetup(){
                         </div>
                     </div>
                     <div class="text-gray-700 mb-2">
-                        <span class="font-semibold">Propuesta:</span> ${idea.description}
+                        <span class="font-semibold">Proposal:</span> ${idea.description}
                     </div>
                     <div class="text-xs text-purple-500 mb-2">${new Date(idea.created_at).toLocaleDateString()}</div>
                     <div class="flex gap-2 mt-2 w-full justify-start">
                         <button
                             class="border border-gray-300 rounded-lg px-3 py-1 text-xs flex items-center gap-1 hover:cursor-pointer"><span>👁️</span>
-                            Ver Perfil Completo</button>
+                            View Full Profile</button>
                         <button class="bg-pink-100 text-pink-700 rounded-lg px-3 py-1 text-xs font-semibold hover:cursor-pointer" id="match-button" data-id="${idea.id_idea}"><span>💖</span>
                             Match! </button>
                     </div>
@@ -57,6 +58,7 @@ export async function ideasSetup(){
     });
 }
 
+// Fetch ideas from API for a given company ID
 async function getIdeas(id) {
     try {
         const res = await fetch(`http://localhost:3000/ideas/iduser/${id}`);
@@ -70,6 +72,7 @@ async function getIdeas(id) {
     }
 }
 
+// Get company logo based on company name
 function getCompanyLogo(company) {
     switch (company) {
         case 'Smart Fit':
@@ -78,15 +81,15 @@ function getCompanyLogo(company) {
             return '<img src="./assets/auteco-logo.png" class="w-12 h-12 object-contain" alt="Auteco">';
         case 'Celsia':
             return '<img src="./assets/celsiaLogo.png" class="w-12 h-12 object-contain" alt="Auteco">';
-        case 'Auteco':
-            return '<img src="./assets/auteco-logo.png" class="w-12 h-12 object-contain" alt="Auteco">';
         default:
+            // Default logo with first letter of company name
             return `<div class="w-12 h-12 flex items-center justify-center rounded-md bg-red-500 text-white font-bold text-lg">
                 ${company ? company[0] : "?"}
               </div>`;
     }
 }
 
+// Function to create a match for an idea
 export const matchIdea = async (id_idea) => {
     try{
         const res = await fetch(`http://localhost:3000/matches`, {
@@ -97,7 +100,7 @@ export const matchIdea = async (id_idea) => {
             body: JSON.stringify({id_idea: id_idea})
         });
 
-        if(!res.ok){ // in case the status fail
+        if(!res.ok){ // If request fails
             throw new Error('Failed to fetch matches');
         }
     }catch(error){

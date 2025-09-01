@@ -1,15 +1,16 @@
 import db from '../config/db.js'
 
+// Get all companies from the database
 const getCompaniesModel = async () => {
     try{
         const data = await db.query('SELECT * FROM companies');
         return data.rows; // return rows
-
     }catch(error){ // handle error
         throw 'Error getting companies: ' + error;
     }
 }
 
+// Get a company by ID
 const getCompanyByIdModel = async (id) => {
     try{
         const data = await db.query('SELECT * FROM companies WHERE id_company = $1', [id]);
@@ -19,14 +20,17 @@ const getCompanyByIdModel = async (id) => {
     }
 }
 
+// Create a new company and user in a transaction
 const postCompaniesModel = async ({ id, company_name, sector, description, password}) => {
     const company = await db.connect();
     try {
         await company.query('BEGIN')
 
+        // Insert into users table
         const queryUsers = `INSERT INTO users (id_user, password, id_role) VALUES ($1, $2, $3) RETURNING *`;
         await company.query(queryUsers, [id, password, 2]);
 
+        // Insert into companies table
         const queryCompanies = `INSERT INTO companies (id_company, company_name, sector, description) VALUES ($1, $2, $3, $4) RETURNING *`;
         const companyResult = await company.query(queryCompanies, [id, company_name, sector, description]);
 
@@ -41,7 +45,7 @@ const postCompaniesModel = async ({ id, company_name, sector, description, passw
     }
 };
 
-
+// Update an existing company by ID
 const putCompaniesModel = async (id, { company_name, sector, description }) => {
     const query = `UPDATE companies 
                 SET company_name = $1, sector = $2, description = $3
@@ -50,6 +54,7 @@ const putCompaniesModel = async (id, { company_name, sector, description }) => {
     return result.rows[0];
 };
 
+// Delete a company (and user) by ID
 const deleteCompaniesModel = async (id) => {
     const queryDeleteCompany = `DELETE FROM users WHERE id_user = $1 RETURNING *`;
     const result = await db.query(queryDeleteCompany,[id])

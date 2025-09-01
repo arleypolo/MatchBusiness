@@ -7,16 +7,16 @@ import companiesRoutes from "./Routes/companies.routes.js";
 import matchRoutes from './Routes/matchesRoutes.js'
 
 
+// Create Express app
 const app = express();
-app.use(cors());
-app.use(json());
+app.use(cors()); // Enable CORS for all requests
+app.use(json()); // Parse JSON request bodies
 
-app.use('/coders', codersRoutes);
-app.use('/auth',authLoginRouter);
-
-app.use('/companies', companiesRoutes ); // endpoints for companies
-app.use('/ideas', ideasRoutes);
-app.use('/companies', companiesRoutes );
-app.use('/matches', matchRoutes);
+app.use('/coders', codersRoutes); // Routes for coders
+app.use('/auth',authLoginRouter); // Routes for authentication
+app.use('/companies', companiesRoutes ); // Endpoints for companies
+app.use('/ideas', ideasRoutes); // Endpoints for ideas
+app.use('/companies', companiesRoutes ); // Endpoints for companies (duplicate, can be removed)
+app.use('/matches', matchRoutes); // Endpoints for matches
 
 export default app;
